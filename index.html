@@ -7,6 +7,42 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div class="stopwatch">
+      <h1 id="displayTime"></h1>
+      <div class="buttons">
+        <img src="images/stop.png">
+        <img src="images/start.png" onclick="watchStart();">
+        <img src="images/reset.png">
+      </div>
+    </div>
+
+    <script>
+
+      let [seconds, minutes, hours] = [0, 0, 0];
+      let displayTime = document.getElementById("displayTime");
+      let timer = null;
+
+      function stopwatch() {
+        seconds++;
+        if (seconds == 60) {
+          seconds = 0;
+          minutes++;
+          if (minutes == 60) {
+            minutes = 0;
+            hours++;
+          }
+        }
+        displayTime.innerHTML = hours +":"+ minutes +":"+ seconds;
+      }
+
+      function watchStart () {
+        if (timer !== null) {
+          clearInterval(timer);
+        }
+        timer = setInterval(stopwatch, 1000) 
+      }
+
+    </script>
 
   </body>
 </html>
